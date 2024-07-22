@@ -11,7 +11,7 @@ import SwiftUI
 struct HW_SuffixSequenceApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SuffixesView()
         }
     }
 }
