@@ -12,7 +12,8 @@ final class SuffixesViewModel: ObservableObject {
     @Published var wordsString = ""
     @Published var searchString = ""
     @Published var isASCSorting = true
-    @Published var sortedArray: [String] = []
+    @Published var sortedArrayByName: [String] = []
+    @Published var sortedArrayByCount: [String] = []
     
     private (set) var suffixesCountDict: [String : [String]] = [:]
     private var cancellables = Set<AnyCancellable>()
@@ -28,7 +29,7 @@ final class SuffixesViewModel: ObservableObject {
         
         $isASCSorting
             .sink { [weak self] isASCSorting in 
-                self?.setSorting(isASCSorting: isASCSorting)
+                self?.setSortingByName(isASCSorting: isASCSorting)
             }
             .store(in: &cancellables)
     }
@@ -49,16 +50,26 @@ final class SuffixesViewModel: ObservableObject {
             }
         }
         suffixesCountDict = Dictionary(grouping: suffixesArray, by: { $0 })
-        setSorting(isASCSorting: isASCSorting)
+        setSortingByName(isASCSorting: isASCSorting)
     }
     
-    private func setSorting(isASCSorting: Bool) {
-        sortedArray = Array(suffixesCountDict.keys.sorted(by: { left, right in
+    private func setSortingByName(isASCSorting: Bool) {
+        sortedArrayByName = Array(suffixesCountDict.keys.sorted(by: { left, right in
             if isASCSorting {
                 return right > left
             } else {
                 return left > right
             }
         }))
+    }
+    
+    func setSortingByCount() {
+        sortedArrayByCount = Array(suffixesCountDict.sorted { element1, element2 in
+            if element1.value.count == element2.value.count {
+                return element1.key < element2.key
+            } else {
+                return element1.value.count > element2.value.count
+            }
+        }.map { $0.key }.suffix(10))
     }
 }

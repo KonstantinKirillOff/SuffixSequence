@@ -28,16 +28,32 @@ struct SuffixesView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            List {
-                ForEach(viewModel.sortedArray, id: \.self) { stringSuffix in
-                    let title = "\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0 > 0 ? String(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0) : "")"
-                    Text(stringSuffix.count >= 3 ? title : stringSuffix)
+            
+            if selectedSegment == SegmentOptions.allSuffixes.rawValue {
+                VStack {
+                    Toggle(isOn: $viewModel.isASCSorting, label: {
+                        Text("ASC/DESC")
+                    })
+                    List {
+                        ForEach(viewModel.sortedArrayByName, id: \.self) { stringSuffix in
+                            let title = "\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0 > 0 ? String(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0) : "")"
+                            Text(stringSuffix.count >= 3 ? title : stringSuffix)
+                        }
+                    }
+                    .listStyle(.plain)
                 }
+            } else {
+                List {
+                    ForEach(viewModel.sortedArrayByCount, id: \.self) { stringSuffix in
+                        Text("\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0)")
+                    }
+                }
+                .listStyle(.plain)
+                .onAppear {
+                    viewModel.setSortingByCount()
+                }
+                Spacer()
             }
-            .listStyle(.plain)
-            Toggle(isOn: $viewModel.isASCSorting, label: {
-                Text("ASC/DESC")
-            })
         }
         .padding()
     }
