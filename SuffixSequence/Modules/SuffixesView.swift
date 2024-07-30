@@ -15,7 +15,8 @@ struct SuffixesView: View {
     var body: some View {
         VStack{
             TextField("Enter your word here", text: $viewModel.wordsString)
-                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                .frame(height: 30)
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray.opacity(0.5), lineWidth: 1)
@@ -34,6 +35,9 @@ struct SuffixesView: View {
                 }
             }
             .listStyle(.plain)
+            Toggle(isOn: $viewModel.isASCSorting, label: {
+                Text("ASC/DESC")
+            })
         }
         .padding()
     }
