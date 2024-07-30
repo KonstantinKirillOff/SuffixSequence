@@ -14,13 +14,7 @@ struct SuffixesView: View {
     
     var body: some View {
         VStack{
-            TextField("Enter your word here", text: $viewModel.wordsString)
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                .frame(height: 30)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                }
+            CustomTextFieldView(text: $viewModel.wordsString)
             Picker("Options", selection: $selectedSegment) {
                 ForEach(SegmentOptions.allCases, id: \.self) { option in
                     Text(option.rawValue)
@@ -31,11 +25,12 @@ struct SuffixesView: View {
             
             if selectedSegment == SegmentOptions.allSuffixes.rawValue {
                 VStack {
+                    CustomTextFieldView(text: $viewModel.searchString)
                     Toggle(isOn: $viewModel.isASCSorting, label: {
                         Text("ASC/DESC")
                     })
                     List {
-                        ForEach(viewModel.sortedArrayByName, id: \.self) { stringSuffix in
+                        ForEach(viewModel.filteredArray, id: \.self) { stringSuffix in
                             let title = "\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0 > 0 ? String(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0) : "")"
                             Text(stringSuffix.count >= 3 ? title : stringSuffix)
                         }

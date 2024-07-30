@@ -12,9 +12,10 @@ final class SuffixesViewModel: ObservableObject {
     @Published var wordsString = ""
     @Published var searchString = ""
     @Published var isASCSorting = true
-    @Published var sortedArrayByName: [String] = []
     @Published var sortedArrayByCount: [String] = []
+    @Published var filteredArray: [String] = []
     
+    private var sortedArrayByName: [String] = []
     private (set) var suffixesCountDict: [String : [String]] = [:]
     private var cancellables = Set<AnyCancellable>()
     
@@ -32,10 +33,31 @@ final class SuffixesViewModel: ObservableObject {
                 self?.setSortingByName(isASCSorting: isASCSorting)
             }
             .store(in: &cancellables)
+        
+        $searchString
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .sink { [weak self] string in
+                self?.setFilterForItems(text: string)
+            }
+            .store(in: &cancellables)
     }
     
-    private func setFilterForItems() {
-        
+    func setSortingByCount() {
+        sortedArrayByCount = Array(suffixesCountDict.sorted { element1, element2 in
+            if element1.value.count == element2.value.count {
+                return element1.key < element2.key
+            } else {
+                return element1.value.count > element2.value.count
+            }
+        }.map { $0.key }.suffix(10))
+    }
+    
+    private func setFilterForItems(text: String) {
+        if !text.isEmpty {
+            filteredArray = sortedArrayByName.filter { $0.contains(text) }
+        } else {
+            filteredArray = sortedArrayByName
+        }
     }
     
     private func getSuffixesFor(text string: String) {
@@ -61,15 +83,6 @@ final class SuffixesViewModel: ObservableObject {
                 return left > right
             }
         }))
-    }
-    
-    func setSortingByCount() {
-        sortedArrayByCount = Array(suffixesCountDict.sorted { element1, element2 in
-            if element1.value.count == element2.value.count {
-                return element1.key < element2.key
-            } else {
-                return element1.value.count > element2.value.count
-            }
-        }.map { $0.key }.suffix(10))
+        setFilterForItems(text: searchString)
     }
 }
