@@ -9,13 +9,12 @@ import Combine
 import SwiftUI
 
 struct SuffixesView: View {
+    @ObservedObject var viewModel = SuffixesViewModel()
     @State var selectedSegment = "Все суфиксы"
-    @State var wordString = ""
     
     var body: some View {
         VStack{
-            TextField("Enter your word here", text: $wordString)
-                .frame(width: .infinity, height: 30)
+            TextField("Enter your word here", text: $viewModel.wordsString)
                 .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
@@ -28,8 +27,13 @@ struct SuffixesView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            Spacer()
-            
+            List {
+                ForEach(viewModel.sortedArray, id: \.self) { stringSuffix in
+                    let title = "\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0 > 0 ? String(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0) : "")"
+                    Text(stringSuffix.count >= 3 ? title : stringSuffix)
+                }
+            }
+            .listStyle(.plain)
         }
         .padding()
     }

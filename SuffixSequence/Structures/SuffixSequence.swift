@@ -11,11 +11,11 @@ struct SuffixSequence: Sequence {
     let initialString: String
     
     func makeIterator() -> AnyIterator<Substring> {
-        var offset = initialString.endIndex
+        var offset = initialString.startIndex
         
         return AnyIterator {
-            guard offset > initialString.startIndex else { return nil }
-            offset = initialString.index(before: offset)
+            guard offset < initialString.endIndex else { return nil }
+            defer { offset = initialString.index(after: offset) }
             return initialString[offset...]
         }
     }

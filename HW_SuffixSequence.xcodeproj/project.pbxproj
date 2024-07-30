@@ -11,7 +11,7 @@
 		436852A72C4D497B003B27D1 /* SuffixesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852A62C4D497B003B27D1 /* SuffixesView.swift */; };
 		436852A92C4D497C003B27D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436852A82C4D497C003B27D1 /* Assets.xcassets */; };
 		436852AC2C4D497C003B27D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */; };
-		436852B42C4D4C1B003B27D1 /* SuffixIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852B32C4D4C1B003B27D1 /* SuffixIterator.swift */; };
+		436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */; };
 		43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,7 +21,7 @@
 		436852A62C4D497B003B27D1 /* SuffixesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixesView.swift; sourceTree = "<group>"; };
 		436852A82C4D497C003B27D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		436852B32C4D4C1B003B27D1 /* SuffixIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixIterator.swift; sourceTree = "<group>"; };
+		436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixSequence.swift; sourceTree = "<group>"; };
 		43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +75,7 @@
 		436852B22C4D4BE4003B27D1 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				436852B32C4D4C1B003B27D1 /* SuffixIterator.swift */,
+				436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				436852A72C4D497B003B27D1 /* SuffixesView.swift in Sources */,
-				436852B42C4D4C1B003B27D1 /* SuffixIterator.swift in Sources */,
+				436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */,
 				436852A52C4D497B003B27D1 /* HW_SuffixSequenceApp.swift in Sources */,
 				43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */,
 			);
@@ -311,7 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HW_SuffixSequence/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SuffixSequence/Preview Content\"";
 				DEVELOPMENT_TEAM = 5VBQ98K5MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -340,7 +340,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HW_SuffixSequence/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SuffixSequence/Preview Content\"";
 				DEVELOPMENT_TEAM = 5VBQ98K5MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
