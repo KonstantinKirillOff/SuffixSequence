@@ -14,12 +14,25 @@ final class SuffixesViewModel: ObservableObject {
     @Published var isASCSorting = true
     @Published var sortedArrayByCount: [String] = []
     @Published var filteredArray: [String] = []
+    @Published var results: [Result] = []
+    @Published var isFiltered = false
     
-    private var sortedArrayByName: [String] = []
+    private (set) var sortedArrayByName: [String] = []
     private (set) var suffixesCountDict: [String : [String]] = [:]
+    
+    private (set) var bestResultId: UUID?
+    private var bestResult: Double = Double.infinity
+    
+    private (set) var worstResultId: UUID?
+    private var worstResult: Double = 0
+    
+    let jobScheduler: JobScheduler
+    private var currentTask: Task<Void, Never>?
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(jobScheduler: JobScheduler) {
+        self.jobScheduler = jobScheduler
+        
         $wordsString
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .map({ $0.lowercased() })
@@ -37,7 +50,7 @@ final class SuffixesViewModel: ObservableObject {
         $searchString
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .sink { [weak self] string in
-                self?.setFilterForItems(text: string)
+                self?.changeSearch()
             }
             .store(in: &cancellables)
     }
@@ -52,15 +65,69 @@ final class SuffixesViewModel: ObservableObject {
         }.map { $0.key }.suffix(10))
     }
     
-    private func setFilterForItems(text: String) {
+   
+    func addRequest() {
+        //requestQueue.push(element: text)
+        guard !searchString.isEmpty else { return }
+        guard currentTask == nil else {
+            print("is occupied")
+            return
+        }
+        
+        currentTask = Task {
+            let startWork = Date()
+            await setFilterForItems(text: searchString)
+            let finishWork = Date()
+            let total = startWork.distance(to: finishWork)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "RU_ru")
+            dateFormatter.dateStyle = .short
+            
+            let result = Result(
+                queryText: searchString,
+                totalWorkTimeMs: startWork.distance(to: finishWork),
+                queryDate: dateFormatter.string(from: startWork)
+            )
+            
+            if total < bestResult {
+                bestResultId = result.id
+                bestResult = total
+            }
+            
+            if total > worstResult {
+                worstResultId = result.id
+                worstResult = total
+            }
+            
+            await jobScheduler.saveResult(result: result)
+            currentTask = nil
+        }
+    }
+    
+    @MainActor
+    func getResults() async {
+        results = await jobScheduler.results
+    }
+    
+    private func setFilterForItems(text: String) async {
         if !text.isEmpty {
             filteredArray = sortedArrayByName.filter { $0.contains(text) }
+            isFiltered = true
         } else {
             filteredArray = sortedArrayByName
+            isFiltered = false
+        }
+    }
+    
+    private func changeSearch() {
+        if searchString.isEmpty {
+            isFiltered = false
         }
     }
     
     private func getSuffixesFor(text string: String) {
+        isFiltered = false
         suffixesCountDict.removeAll()
         
         var suffixesArray = [String]()
@@ -83,6 +150,5 @@ final class SuffixesViewModel: ObservableObject {
                 return left > right
             }
         }))
-        setFilterForItems(text: searchString)
     }
 }
