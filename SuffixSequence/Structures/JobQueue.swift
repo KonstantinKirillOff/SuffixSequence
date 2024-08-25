@@ -8,13 +8,13 @@
 import Foundation
 
 final class JobQueue {
-    var queue = [String]()
+    private (set) var queue = [Job]()
     
     func isEmpty() -> Bool {
         queue.isEmpty
     }
     
-    func pop() -> String? {
+    func pop() -> Job? {
         if queue.isEmpty {
             return nil
         }
@@ -22,7 +22,7 @@ final class JobQueue {
         return job
     }
     
-    func push(element: String) {
-        queue.append(element)
+    func push(_ job: Job) {
+        queue.append(job)
     }
 }

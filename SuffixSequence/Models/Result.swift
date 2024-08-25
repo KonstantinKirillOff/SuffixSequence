@@ -5,11 +5,13 @@
 //  Created by Konstantin Kirillov on 17.08.2024.
 //
 
-import Foundation
+import SwiftUI
 
 struct Result: Identifiable {
     let id = UUID()
     let queryText: String
-    let totalWorkTimeMs: Double
-    let queryDate: String
+    let result: String
+    let totalWorkTimeMs: TimeInterval
+    let searchDate: String
+    var color: Color = .black
 }

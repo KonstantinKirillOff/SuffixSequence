@@ -16,6 +16,7 @@
 		436852AC2C4D497C003B27D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */; };
 		436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */; };
 		43A6AD552C58E2F300CE8B97 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A6AD542C58E2F300CE8B97 /* CustomTextFieldView.swift */; };
+		43CDC3BD2C7B1585008F13AE /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CDC3BC2C7B1585008F13AE /* Job.swift */; };
 		43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixSequence.swift; sourceTree = "<group>"; };
 		43A6AD542C58E2F300CE8B97 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		43CDC3BC2C7B1585008F13AE /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				431E3BA32C70A658006EB061 /* Result.swift */,
+				43CDC3BC2C7B1585008F13AE /* Job.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				431E3B9F2C70A534006EB061 /* JobScheduler.swift in Sources */,
 				43A6AD552C58E2F300CE8B97 /* CustomTextFieldView.swift in Sources */,
 				436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */,
+				43CDC3BD2C7B1585008F13AE /* Job.swift in Sources */,
 				436852A52C4D497B003B27D1 /* HW_SuffixSequenceApp.swift in Sources */,
 				431E3BA42C70A658006EB061 /* Result.swift in Sources */,
 				43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */,
