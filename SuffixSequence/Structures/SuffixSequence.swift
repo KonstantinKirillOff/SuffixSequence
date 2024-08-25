@@ -20,3 +20,5 @@ struct SuffixSequence: Sequence {
         }
     }
 }
+
+

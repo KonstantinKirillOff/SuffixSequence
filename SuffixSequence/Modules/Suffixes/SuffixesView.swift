@@ -9,58 +9,48 @@ import Combine
 import SwiftUI
 
 struct SuffixesView: View {
-    @ObservedObject var viewModel = SuffixesViewModel()
-    @State var selectedSegment = "Все суфиксы"
+    @StateObject var viewModel: SuffixesViewModel
     
     var body: some View {
         VStack{
             CustomTextFieldView(text: $viewModel.wordsString)
-            Picker("Options", selection: $selectedSegment) {
-                ForEach(SegmentOptions.allCases, id: \.self) { option in
-                    Text(option.rawValue)
-                        .tag(option.rawValue)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            
-            if selectedSegment == SegmentOptions.allSuffixes.rawValue {
-                VStack {
-                    CustomTextFieldView(text: $viewModel.searchString)
-                    Toggle(isOn: $viewModel.isASCSorting, label: {
-                        Text("ASC/DESC")
-                    })
-                    List {
-                        ForEach(viewModel.filteredArray, id: \.self) { stringSuffix in
-                            let title = "\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0 > 0 ? String(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0) : "")"
-                            Text(stringSuffix.count >= 3 ? title : stringSuffix)
+            Text("\(viewModel.summaryText)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            List {
+                ForEach(viewModel.results, id: \.id) { result in
+                    if !result.queryText.isEmpty {
+                        VStack {
+                            HStack {
+                                Text(result.queryText)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(result.searchDate)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
+                            HStack {
+                                Text(result.result)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(String(format: "%.6f сек", result.totalWorkTimeMs))
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
                         }
-                    }
-                    .listStyle(.plain)
-                }
-            } else {
-                List {
-                    ForEach(viewModel.sortedArrayByCount, id: \.self) { stringSuffix in
-                        Text("\(stringSuffix) - \(viewModel.suffixesCountDict[stringSuffix]?.count ?? 0)")
+                        .foregroundColor(result.color)
                     }
                 }
-                .listStyle(.plain)
-                .onAppear {
-                    viewModel.setSortingByCount()
-                }
-                Spacer()
+                .listRowSeparator(.visible)
+            }
+            .listStyle(.plain)
+            .task {
+                await viewModel.startTimer()
             }
         }
         .padding()
     }
-    
-    enum SegmentOptions: String, CaseIterable {
-        case allSuffixes = "Все суфиксы"
-        case top10 = "Топ 10 популярных"
-    }
 }
 
 #Preview {
-    SuffixesView()
+    SuffixesView(
+        viewModel: SuffixesViewModel(jobScheduler: JobScheduler())
+    )
 }
 
 

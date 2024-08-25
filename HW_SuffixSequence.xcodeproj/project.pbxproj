@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431E3B9F2C70A534006EB061 /* JobScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E3B9E2C70A534006EB061 /* JobScheduler.swift */; };
+		431E3BA42C70A658006EB061 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E3BA32C70A658006EB061 /* Result.swift */; };
+		431E3BA62C70A8DA006EB061 /* JobQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E3BA52C70A8DA006EB061 /* JobQueue.swift */; };
 		436852A52C4D497B003B27D1 /* HW_SuffixSequenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852A42C4D497B003B27D1 /* HW_SuffixSequenceApp.swift */; };
 		436852A72C4D497B003B27D1 /* SuffixesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852A62C4D497B003B27D1 /* SuffixesView.swift */; };
 		436852A92C4D497C003B27D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436852A82C4D497C003B27D1 /* Assets.xcassets */; };
 		436852AC2C4D497C003B27D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */; };
 		436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */; };
 		43A6AD552C58E2F300CE8B97 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A6AD542C58E2F300CE8B97 /* CustomTextFieldView.swift */; };
+		43CDC3BD2C7B1585008F13AE /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CDC3BC2C7B1585008F13AE /* Job.swift */; };
 		43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		431E3B9E2C70A534006EB061 /* JobScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobScheduler.swift; sourceTree = "<group>"; };
+		431E3BA32C70A658006EB061 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		431E3BA52C70A8DA006EB061 /* JobQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobQueue.swift; sourceTree = "<group>"; };
 		436852A12C4D497B003B27D1 /* HW_SuffixSequence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW_SuffixSequence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		436852A42C4D497B003B27D1 /* HW_SuffixSequenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW_SuffixSequenceApp.swift; sourceTree = "<group>"; };
 		436852A62C4D497B003B27D1 /* SuffixesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixesView.swift; sourceTree = "<group>"; };
@@ -24,6 +31,7 @@
 		436852AB2C4D497C003B27D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixSequence.swift; sourceTree = "<group>"; };
 		43A6AD542C58E2F300CE8B97 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		43CDC3BC2C7B1585008F13AE /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		43E003702C4E9EC700FBB9A4 /* SuffixesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,6 +46,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		431E3B9D2C70A513006EB061 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				431E3B9E2C70A534006EB061 /* JobScheduler.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		431E3BA22C70A647006EB061 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				431E3BA32C70A658006EB061 /* Result.swift */,
+				43CDC3BC2C7B1585008F13AE /* Job.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		436852982C4D497B003B27D1 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +85,8 @@
 				436852B52C4D52A2003B27D1 /* App */,
 				436852B62C4D52B3003B27D1 /* Resources */,
 				436852B22C4D4BE4003B27D1 /* Structures */,
+				431E3B9D2C70A513006EB061 /* Services */,
+				431E3BA22C70A647006EB061 /* Models */,
 				43E0036F2C4E9E9200FBB9A4 /* Modules */,
 				436852AA2C4D497C003B27D1 /* Preview Content */,
 			);
@@ -78,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				436852B32C4D4C1B003B27D1 /* SuffixSequence.swift */,
+				431E3BA52C70A8DA006EB061 /* JobQueue.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -195,10 +223,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				436852A72C4D497B003B27D1 /* SuffixesView.swift in Sources */,
+				431E3B9F2C70A534006EB061 /* JobScheduler.swift in Sources */,
 				43A6AD552C58E2F300CE8B97 /* CustomTextFieldView.swift in Sources */,
 				436852B42C4D4C1B003B27D1 /* SuffixSequence.swift in Sources */,
+				43CDC3BD2C7B1585008F13AE /* Job.swift in Sources */,
 				436852A52C4D497B003B27D1 /* HW_SuffixSequenceApp.swift in Sources */,
+				431E3BA42C70A658006EB061 /* Result.swift in Sources */,
 				43E003712C4E9EC700FBB9A4 /* SuffixesViewModel.swift in Sources */,
+				431E3BA62C70A8DA006EB061 /* JobQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

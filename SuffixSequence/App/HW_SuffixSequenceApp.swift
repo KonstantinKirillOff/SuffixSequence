@@ -11,7 +11,9 @@ import SwiftUI
 struct HW_SuffixSequenceApp: App {
     var body: some Scene {
         WindowGroup {
-            SuffixesView()
+            let jobScheduler = JobScheduler()
+            let viewModel = SuffixesViewModel(jobScheduler: jobScheduler)
+            SuffixesView(viewModel: viewModel)
         }
     }
 }
