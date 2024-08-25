@@ -40,6 +40,7 @@ final class SuffixesViewModel: ObservableObject {
                 self?.setFilterForItems(text: string)
             }
             .store(in: &cancellables)
+        
     }
     
     func setSortingByCount() {
